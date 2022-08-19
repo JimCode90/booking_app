@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 const firebaseConfig = {
-    apiKey: "AIzaSyAexhpSBpZgD82dwi-2gK-XtzR3t6Gtwak",
-    authDomain: "crud-react-a55cd.firebaseapp.com",
-    projectId: "crud-react-a55cd",
-    storageBucket: "crud-react-a55cd.appspot.com",
-    messagingSenderId: "53498360650",
-    appId: "1:53498360650:web:f2bb49a66b9486407607b3"
+    apiKey: "AIzaSyAIMfVQm1q7gqXJPZNLdV45y80luIgMgqA",
+    authDomain: "booking-app-2fd7a.firebaseapp.com",
+    projectId: "booking-app-2fd7a",
+    storageBucket: "booking-app-2fd7a.appspot.com",
+    messagingSenderId: "721470363134",
+    appId: "1:721470363134:web:139f86868f769d2c5a5caf"
 };
 
 const app = initializeApp(firebaseConfig);

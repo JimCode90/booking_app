@@ -3,6 +3,8 @@ import { onAuthStateChanged, onIdTokenChanged } from 'firebase/auth'
 import axios from "axios";
 import { Context } from "../context";
 import {auth} from "../firebase";
+import { axiosAuth } from "../actions/axios";
+import { setCookie, destroyCookie } from "nookies";
 
 
 const FirebaseAuthState = ({ children }) => {
@@ -15,19 +17,20 @@ const FirebaseAuthState = ({ children }) => {
                 dispatch({
                     type: 'LOGOUT'
                 })
+                destroyCookie(null, "token")
+                setCookie(null, "token", "", {})
             }else{
                 const {token} = await user.getIdTokenResult();
-                console.log(token);
-                axios.post('http://localhost:8000/api/current-user', {}, {
-                    headers:{
-                        token: token
-                    }
-                }).then(resp => {
+                // seteamos el token en las cookies
+                destroyCookie(null, "token")
+                setCookie(null, "token", token, {})
+
+                axiosAuth.post('/current-user', {}).then(resp => {
                     console.log("RES ======> ", resp)
-                    // dispatch({
-                    //     type: 'LOGIN',
-                    //     payload: res.data
-                    // })
+                    dispatch({
+                        type: 'LOGIN',
+                        payload: resp.data
+                    })
                 })
             }
         })

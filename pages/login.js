@@ -21,6 +21,7 @@ const Login = () => {
         await createUserWithEmailAndPassword(auth, registroEmail, registroPass)
             .then(user => {
                 console.log('REGISTRO', user)
+                router.push('/')
             })
             .catch(error => {
                 toast.error(error.message)
@@ -31,6 +32,7 @@ const Login = () => {
         await signInWithEmailAndPassword(auth, loginEmail, loginPass)
             .then(user => {
                 console.log('Login', user)
+                router.push('/')
             })
             .catch(error => {
                 toast.error(error.message)
@@ -41,6 +43,7 @@ const Login = () => {
         await signInWithPopup(auth, provider)
             .then(user => {
                 console.log('Login', user)
+                router.push('/')
             })
             .catch(error => {
                 toast.error(error.message)
