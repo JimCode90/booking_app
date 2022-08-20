@@ -20,13 +20,16 @@ const Nav = () => {
         dispatch({
             type: 'LOGOUT'
         });
-        await router.push('/login')
+        router.push('/login')
     }
 
     return (
         <nav className="nav bg-light d-flex justify-content-between">
             <Link href="/">
                 <a className="nav-link">Home</a>
+            </Link>
+            <Link href={ user ? '/hotel/new' : '/login'}>
+                <a className="nav-link">Hotel</a>
             </Link>
             {
                 user ? (

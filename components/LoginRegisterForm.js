@@ -1,4 +1,3 @@
-import React from 'react';
 
 const LoginRegisterForm = ({ email, setEmail, password, setPassword, buttonName, handleSubmit}) => {
     return (
