@@ -5,7 +5,7 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPo
 import LoginRegisterForm from "../components/LoginRegisterForm";
 import {toast} from 'react-toastify';
 import {Button} from 'antd'
-import { GoogleOutlined } from '@ant-design/icons'
+import { GoogleOutlined, SyncOutlined } from '@ant-design/icons'
 
 
 const Login = () => {
@@ -13,11 +13,13 @@ const Login = () => {
     const [loginPass, setLoginPass] = useState('password');
     const [registroEmail, setRegistroEmail] = useState('');
     const [registroPass, setRegistroPass] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const router = useRouter();
     const provider = new GoogleAuthProvider();
 
     const registrar = async () => {
+        setLoading(true)
         await createUserWithEmailAndPassword(auth, registroEmail, registroPass)
             .then(user => {
                 console.log('REGISTRO', user)
@@ -25,10 +27,12 @@ const Login = () => {
             })
             .catch(error => {
                 toast.error(error.message)
+                setLoading(false)
             })
     }
 
     const login = async () => {
+        setLoading(true)
         await signInWithEmailAndPassword(auth, loginEmail, loginPass)
             .then(user => {
                 console.log('Login', user)
@@ -36,10 +40,12 @@ const Login = () => {
             })
             .catch(error => {
                 toast.error(error.message)
+                setLoading(false)
             })
     }
 
     const googleLogin = async () => {
+        setLoading(true)
         await signInWithPopup(auth, provider)
             .then(user => {
                 console.log('Login', user)
@@ -47,6 +53,7 @@ const Login = () => {
             })
             .catch(error => {
                 toast.error(error.message)
+                setLoading(false)
             })
     }
 
@@ -54,7 +61,9 @@ const Login = () => {
     return (
         <div className="container">
             <div className="row">
-                <h2 className="text-center pt-4 display-4">Login / Registro</h2>
+                <h2 className="text-center pt-4 display-4">
+                    { loading ? <SyncOutlined spin className="text-danger" /> : 'Login / Registro'}
+                </h2>
                 <Button
                     onClick={googleLogin}
                     className="mb-3 col-md-6 offset-md-3"
