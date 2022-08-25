@@ -6,6 +6,7 @@ import LoginRegisterForm from "../components/LoginRegisterForm";
 import {toast} from 'react-toastify';
 import {Button} from 'antd'
 import { GoogleOutlined, SyncOutlined } from '@ant-design/icons'
+import Link from "next/link";
 
 
 const Login = () => {
@@ -69,6 +70,7 @@ const Login = () => {
                     className="mb-3 col-md-6 offset-md-3"
                     type="danger"
                     shape="round"
+
                     icon={<GoogleOutlined />}
                     size="large"
                 >
@@ -94,6 +96,15 @@ const Login = () => {
                     handleSubmit={registrar}
                     buttonName="Registro"
                 />
+
+            </div>
+            <div className="d-flex">
+                <Link href='/reset-password'>
+                    <a
+                        className="btn btn-outline-danger btn-sm mt-2">
+                        Resetear Password
+                    </a>
+                </Link>
 
             </div>
         </div>
